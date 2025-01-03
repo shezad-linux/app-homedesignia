@@ -1,0 +1,12 @@
+bricks:  
+  riverpod_module:
+    git:
+      url: https://github.com/preet3001/mason_bricks.git             
+      path: bricks/riverpod_module
+      ref: river_module_with_generator
+      
+  riverpod_project:
+    git:
+      url: https://github.com/preet3001/mason_bricks.git             
+      path: bricks/riverpod_project
+      ref: river_module_with_generator      

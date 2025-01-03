@@ -1,0 +1,15 @@
+{
+  "signUpText": "By signing or signing in, you agree to the privacy policy & terms and conditions", 
+
+  "employeeLogin" : "Login as an Employee/Client", 
+  "loginAdmin" : "Login as Adimn", 
+  "welcomeBack": "Hey, Welcome Back",
+  "checkUpdates" : "Please check your updates", 
+
+  "employee" : "Check your employees", 
+  "manageEmployees" : "You can manage your employees from here", 
+
+  "projects" : "Look into your projects", 
+  "manageProjects" : "You can manage your projects from here"
+  
+}
