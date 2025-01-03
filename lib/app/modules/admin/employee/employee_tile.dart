@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interior/assets/text.dart';
 
 Widget employeeTile(BuildContext context, String title, String description,
+String designation, String employeeId,
     double imgHeight, String bgImag, VoidCallback onPressed) {
   return InkWell(
     onTap: onPressed,
@@ -21,16 +22,16 @@ Widget employeeTile(BuildContext context, String title, String description,
         elevation: 7,
         child: Container(
             height: isDesktop
-                ? MediaQuery.of(context).size.height * 0.25
+                ? MediaQuery.of(context).size.height * 0.3
                 : isTablet
-                    ? MediaQuery.of(context).size.height * 0.2
-                    : MediaQuery.of(context).size.height * 0.1,
+                    ? MediaQuery.of(context).size.height * 0.23
+                    : MediaQuery.of(context).size.height * 0.13,
             width: double.infinity,
             padding: EdgeInsets.all(isDesktop
                 ? 20
                 : isTablet
                     ? 16.0
-                    : 10.0),
+                    : 10.0),    
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(
@@ -52,7 +53,7 @@ Widget employeeTile(BuildContext context, String title, String description,
                         shape: BoxShape.circle,
                         image: DecorationImage(
                             image: NetworkImage(bgImag), fit: BoxFit.fill)),
-                  ),
+                  ),   
                   SizedBox(
                     width: isDesktop
                         ? 30
@@ -61,6 +62,7 @@ Widget employeeTile(BuildContext context, String title, String description,
                             : 10,
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Name : $title",
@@ -68,6 +70,14 @@ Widget employeeTile(BuildContext context, String title, String description,
                       ),
                       Text(
                         "DOJ : $description",
+                        style: BaseTextstyle.font14w400,
+                      ), 
+                       Text(
+                        "Designation : $designation",
+                        style: BaseTextstyle.font14w400,
+                      ), 
+                       Text(
+                        "Employee Id : $employeeId",
                         style: BaseTextstyle.font14w400,
                       )
                     ],

@@ -10,6 +10,10 @@
   "manageEmployees" : "You can manage your employees from here", 
 
   "projects" : "Look into your projects", 
-  "manageProjects" : "You can manage your projects from here"
+  "manageProjects" : "You can manage your projects from here",
   
+
+
+  "clients" : "Look into your clients", 
+  "manageClients" : "You can manage your clients from here"
 }

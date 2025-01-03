@@ -9,6 +9,7 @@ import 'package:interior/app/core/widgets/add_button.dart';
 import 'package:interior/app/core/widgets/buttons.dart';
 import 'package:interior/app/core/widgets/custom_text_fields.dart';
 import 'package:interior/app/core/widgets/custome_bottom_sheet.dart';
+import 'package:interior/app/modules/admin/projects/project_details_view.dart';
 import 'package:interior/app/modules/admin/projects/project_tile.dart';
 import 'package:interior/app/modules/admin/projects/providers/project_providers.dart';
 import 'package:interior/assets/text.dart';
@@ -91,13 +92,16 @@ class ProjectsView extends ConsumerWidget {
                           'John Doe Project',
                           '20/11/2012',
                           'Ongoing',
+                          "#${i+1}",
                           isDesktop
                               ? MediaQuery.of(context).size.height * 0.150
                               : isTablet
                                   ? MediaQuery.of(context).size.height * 0.10
                                   : MediaQuery.of(context).size.height * 0.060,
                           "https://imgs.search.brave.com/QHtnZKbeHGavnBqi2E2CIyJaU81J_L4v1JmyLhhMMr8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuYWRzdHRjLmNv/bS9tZWRpYS9pbWFn/ZXMvNjE5NC9kN2Rh/L2Y5MWMvODEyMC9m/NTAwLzAwMzQvbmV3/c2xldHRlci9QQUxf/RGVzaWduX05VQk9f/SW1hZ2VfXygxKS5q/cGc_MTYzNzE0NDUy/Ng",
-                          () {}),
+                          () {
+                            context.push(ProjectDetailsView.routeName);
+                          }),
                     )
                 ],
               ),

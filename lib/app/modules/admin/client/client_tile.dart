@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:interior/assets/text.dart';
 
-Widget projectTile(BuildContext context, String title, String description,
-String projectId, 
-    String status, double imgHeight, String bgImag, VoidCallback onPressed) {
+Widget clientTile(BuildContext context, String title, String description,
+String status, String clientId,
+    double imgHeight, String bgImag, VoidCallback onPressed) {
   return InkWell(
     onTap: onPressed,
     child: LayoutBuilder(builder: (context, constraints) {
@@ -72,15 +72,14 @@ String projectId,
                         "Start Date : $description",
                         style: BaseTextstyle.font14w400,
                       ),
-                      Text(
-                        "Current Status : $status",
-                        style: BaseTextstyle.font14w400,
-                      ),
-
                        Text(
-                        "Project ID : $projectId",
+                        "Status : $status",
                         style: BaseTextstyle.font14w400,
                       ),
+                      Text(
+                        "Client Id : $clientId",
+                        style: BaseTextstyle.font14w400,
+                      )
                     ],
                   ),
                   Spacer(),
