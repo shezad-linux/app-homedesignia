@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:interior/assets/text.dart';
+
+Widget currentProjectTile(
+    BuildContext context,
+    String title,
+    String description,
+    String designation,
+    String employeeId,
+    double imgHeight,
+    String bgImag,
+    
+    VoidCallback onPressed,
+    VoidCallback removeClick, 
+    ) {
+  return InkWell(
+    onTap: onPressed,
+    child: LayoutBuilder(builder: (context, constraints) {
+      final isDesktop = constraints.maxWidth > 1200;
+      final isTablet =
+          constraints.maxWidth > 600 && constraints.maxWidth <= 1200;
+      return PhysicalModel(
+        borderRadius: BorderRadius.all(
+          Radius.circular(isDesktop
+              ? 20
+              : isTablet
+                  ? 10
+                  : 5),
+        ),
+        color: Colors.blueGrey,
+        elevation: 7,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(isDesktop
+              ? 20
+              : isTablet
+                  ? 16.0
+                  : 10.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(isDesktop
+                  ? 20
+                  : isTablet
+                      ? 10
+                      : 5),
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: imgHeight,
+                    width: imgHeight,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: NetworkImage(bgImag), fit: BoxFit.fill)),
+                  ),
+                  SizedBox(
+                    width: isDesktop
+                        ? 30
+                        : isTablet
+                            ? 20
+                            : 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Name : $title",
+                        style: BaseTextstyle.font16w400,
+                      ),
+                      Text(
+                        "DOJ : $description",
+                        style: BaseTextstyle.font14w400,
+                      ),
+                      Text(
+                        "Designation : $designation",
+                        style: BaseTextstyle.font14w400,
+                      ),
+                      Text(
+                        "Employee Id : $employeeId",
+                        style: BaseTextstyle.font14w400,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+          
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Text("Want to remove from this project?", 
+              style: BaseTextstyle.font16w400,
+              ), 
+
+              Spacer(), 
+              InkWell(
+                          onTap: removeClick,
+                          child: Icon(Icons.remove_circle_rounded, 
+                          color: Theme.of(context).primaryColor,
+                          ),
+                        )
+            ],
+          )
+            ],
+          ),
+        ),
+      );
+    }),
+  );
+}

@@ -97,7 +97,9 @@ class ClientView extends ConsumerWidget{
                                   ? MediaQuery.of(context).size.height * 0.10
                                   : MediaQuery.of(context).size.height * 0.060,
                           "https://imgs.search.brave.com/QZT_JW2J5h0fM0poNUUTnjniO4Tg8eXHa_rsCQNbos0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZXJy/aWFtLXdlYnN0ZXIu/Y29tL2Fzc2V0cy9t/dy9pbWFnZXMvYXJ0/aWNsZS9hcnQtZ2xv/YmFsLWZvb3Rlci1y/ZWNpcmMvY293b3Jr/ZXJzJTIwbG9va2lu/ZyUyMGF0JTIwbGFw/dG9wLTgzNzQtNmU0/NTgwNGEwZTk1NTMy/ZjZlZjcxMTc1MDRh/ZTE4MWJAMXguanBn",
-                          () {}),
+                          () {
+                            // context.push(location)
+                          }),
                     )
                 ],
               ),

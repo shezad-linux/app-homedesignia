@@ -1,18 +1,33 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interior/app/core/theme/app_theme.dart';
-import 'package:interior/app/modules/admin/employee/employee_tile.dart';
+import 'package:interior/app/core/widgets/custom_text_fields.dart';
+import 'package:interior/app/modules/admin/projects/providers/project_providers.dart';
+import 'package:interior/app/modules/admin/projects/teams_tile.dart';
 import 'package:interior/assets/text.dart';
 
 class ProjectDetailsView extends ConsumerWidget {
   static const routeName = '/projectVDetailsiew';
   ProjectDetailsView({super.key});
 
+  TextEditingController nameController = TextEditingController();
+  
+
+  TextEditingController paymentController = TextEditingController();
+
+  TextEditingController statusontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    DateTime checkDos = ref.watch(dateOfoprojStartProvider);
+    DateTime checkDoe = ref.watch(endDateProvider);
+    final name = ref.watch(nameProvider);
+    final paymentStatus = ref.watch(projDeadLineProvider);
+
+    final status = ref.watch(currentStatusprovider);
     final appTheme = ref.watch(appThemeProvider).lightTheme;
     return SafeArea(
       child: Scaffold(
@@ -79,18 +94,41 @@ class ProjectDetailsView extends ConsumerWidget {
                             style: BaseTextstyle.font16w400,
                           ),
                           Spacer(),
-                          Expanded(
-                            flex: 4,
-                            child: Text(
-                              "John Doe's Home project",
-                              style: BaseTextstyle.font16w400,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                          name
+                              ? Expanded(
+                                  flex: 6,
+                                  child: CustomTextFormField(
+                                      hintText: 'Enter project name',
+                                      controller: nameController,
+                                      validator: (validator) {
+                                        final value = validator!.trim();
+                                        if (value.isEmpty) {
+                                          return 'Please enter project name';
+                                        }
+                                        return null;
+                                      }),
+                                )
+                              : Expanded(
+                                  flex: 4,
+                                  child: Text(
+                                    "John Doe's Home project",
+                                    style: BaseTextstyle.font16w400,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                          InkWell(
+                            onTap: () {
+                              name
+                                  ? ref.read(nameProvider.notifier).state =
+                                      false
+                                  : ref.read(nameProvider.notifier).state =
+                                      true;
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: appTheme.iconTheme.color,
                             ),
-                          ),
-                          Icon(
-                            Icons.edit,
-                            color: appTheme.iconTheme.color,
                           )
                         ],
                       ),
@@ -107,15 +145,22 @@ class ProjectDetailsView extends ConsumerWidget {
                           Expanded(
                             flex: 4,
                             child: Text(
-                              "2/11/2025",
+                              "${checkDoe.day}/${checkDoe.month}/${checkDoe.year}",
                               style: BaseTextstyle.font16w400,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Icon(
-                            Icons.edit,
-                            color: appTheme.iconTheme.color,
+                          InkWell(
+                            onTap: () async {
+                              checkDoe = await ref
+                                  .read(endDateProvider.notifier)
+                                  .pickDate(context);
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: appTheme.iconTheme.color,
+                            ),
                           )
                         ],
                       ),
@@ -132,15 +177,22 @@ class ProjectDetailsView extends ConsumerWidget {
                           Expanded(
                             flex: 4,
                             child: Text(
-                              "2/11/2024",
+                              "${checkDos.day}/${checkDos.month}/${checkDos.year}",
                               style: BaseTextstyle.font16w400,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Icon(
-                            Icons.edit,
-                            color: appTheme.iconTheme.color,
+                          InkWell(
+                            onTap: () async {
+                              checkDos = await ref
+                                  .read(dateOfoprojStartProvider.notifier)
+                                  .pickDate(context);
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: appTheme.iconTheme.color,
+                            ),
                           )
                         ],
                       ),
@@ -150,13 +202,42 @@ class ProjectDetailsView extends ConsumerWidget {
                       Row(
                         children: [
                           Text(
-                            "Current Status : Ongoing",
+                            "Current Status :",
                             style: BaseTextstyle.font16w400,
                           ),
                           Spacer(),
-                          Icon(
-                            Icons.edit,
-                            color: appTheme.iconTheme.color,
+                          status
+                              ? Expanded(
+                                  flex: 6,
+                                  child: CustomTextFormField(
+                                      controller: statusontroller,
+                                      hintText: 'Update Status',
+                                      validator: (validator) {
+                                        final value = validator!.trim();
+                                        if (value.isEmpty) {
+                                          return 'please enter status for your project';
+                                        }
+                                        return null;
+                                      }))
+                              : Text(
+                                  "Ongoing",
+                                  style: BaseTextstyle.font16w400,
+                                ),
+                          Spacer(),
+                          InkWell(
+                            onTap: () {
+                              status
+                                  ? ref
+                                      .read(currentStatusprovider.notifier)
+                                      .state = false
+                                  : ref
+                                      .read(currentStatusprovider.notifier)
+                                      .state = true;
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: appTheme.iconTheme.color,
+                            ),
                           )
                         ],
                       ),
@@ -170,7 +251,7 @@ class ProjectDetailsView extends ConsumerWidget {
                       for (int i = 0; i < 3; i++)
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: employeeTile(
+                          child: teamsTile(
                               context,
                               'John Doe',
                               '20/11/2012',
@@ -184,24 +265,49 @@ class ProjectDetailsView extends ConsumerWidget {
                                       : MediaQuery.of(context).size.height *
                                           0.060,
                               "https://imgs.search.brave.com/QZT_JW2J5h0fM0poNUUTnjniO4Tg8eXHa_rsCQNbos0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZXJy/aWFtLXdlYnN0ZXIu/Y29tL2Fzc2V0cy9t/dy9pbWFnZXMvYXJ0/aWNsZS9hcnQtZ2xv/YmFsLWZvb3Rlci1y/ZWNpcmMvY293b3Jr/ZXJzJTIwbG9va2lu/ZyUyMGF0JTIwbGFw/dG9wLTgzNzQtNmU0/NTgwNGEwZTk1NTMy/ZjZlZjcxMTc1MDRh/ZTE4MWJAMXguanBn",
+                              () {},
+                              "INR 40000",
                               () {}),
-                        ), 
-
+                        ),
                       SizedBox(
                         height: 10,
-                      ), 
+                      ),
                       Row(
                         children: [
-                          Text("Payment Status", 
-                          style: BaseTextstyle.font16w400,
-                          ), 
+                          Text(
+                            "Payment Status",
+                            style: BaseTextstyle.font16w400,
+                          ),
                           Spacer(),
-                          Text("Ontime", 
-                          style: BaseTextstyle.font16w400,
-                          ), 
-                          SizedBox(width: 10,),
-                          Icon(Icons.edit, color: appTheme.iconTheme.color,)
-                      ],
+                        paymentStatus ? Expanded(
+                          flex: 9,
+                          child: CustomTextFormField(
+                            hintText: 'Update Payment status',
+                            controller: paymentController, validator: (validator){
+                            final value = validator!.trim();
+                            if (value.isEmpty) {
+                              return 'Please update your payment status';
+                            }
+                            return null;
+                          })) : Text(
+                            "Ontime",
+                            style: BaseTextstyle.font16w400,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: 
+                            (){
+                              paymentStatus ? ref.read(projDeadLineProvider.notifier).state = false : 
+                              ref.read(projDeadLineProvider.notifier).state = true;
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              color: appTheme.iconTheme.color,
+                            ),
+                          )
+                        ],
                       )
                     ],
                   ),
