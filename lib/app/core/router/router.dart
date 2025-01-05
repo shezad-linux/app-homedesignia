@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:interior/app/modules/admin/client/client_details_view.dart';
 import 'package:interior/app/modules/admin/client/client_view.dart';
 import 'package:interior/app/modules/admin/employee/employee_details_view.dart';
 import 'package:interior/app/modules/admin/employee/employee_view.dart';
@@ -47,6 +48,12 @@ final routerProvider = Provider<GoRouter>(
           path: EmployeeDeytailsView.routeName,
           pageBuilder: (context, state) =>
               appTransiton(context, state, EmployeeDeytailsView()),
+        ),
+
+        GoRoute(
+          path: ClientDetailsView.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, ClientDetailsView()),
         ),
 
         GoRoute(

@@ -4,6 +4,15 @@ import 'package:image_picker/image_picker.dart';
 
 XFile? imagePicker;
 
+final clinetNameProvider = StateProvider<bool>((ref)=> false);
+
+final paymentStatusProvider = StateProvider<bool>((ref)=> false);
+
+final addressProvider = StateProvider<bool>((ref)=> false);
+
+final totalProvider = StateProvider<bool>((ref)=> false);
+
+final remaingProvider = StateProvider<bool>((ref)=> false);
 final packageClientImages = StateNotifierProvider<SelectedImage, XFile?>(
     (ref) => SelectedImage(imagePicker));
 

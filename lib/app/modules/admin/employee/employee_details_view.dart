@@ -303,7 +303,7 @@ class EmployeeDeytailsView extends ConsumerWidget {
                       )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           );

@@ -9,6 +9,7 @@ import 'package:interior/app/core/widgets/add_button.dart';
 import 'package:interior/app/core/widgets/buttons.dart';
 import 'package:interior/app/core/widgets/custom_text_fields.dart';
 import 'package:interior/app/core/widgets/custome_bottom_sheet.dart';
+import 'package:interior/app/modules/admin/client/client_details_view.dart';
 import 'package:interior/app/modules/admin/client/client_tile.dart';
 import 'package:interior/app/modules/admin/client/providers/client_providers.dart';
 import 'package:interior/assets/text.dart';
@@ -98,7 +99,7 @@ class ClientView extends ConsumerWidget{
                                   : MediaQuery.of(context).size.height * 0.060,
                           "https://imgs.search.brave.com/QZT_JW2J5h0fM0poNUUTnjniO4Tg8eXHa_rsCQNbos0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZXJy/aWFtLXdlYnN0ZXIu/Y29tL2Fzc2V0cy9t/dy9pbWFnZXMvYXJ0/aWNsZS9hcnQtZ2xv/YmFsLWZvb3Rlci1y/ZWNpcmMvY293b3Jr/ZXJzJTIwbG9va2lu/ZyUyMGF0JTIwbGFw/dG9wLTgzNzQtNmU0/NTgwNGEwZTk1NTMy/ZjZlZjcxMTc1MDRh/ZTE4MWJAMXguanBn",
                           () {
-                            // context.push(location)
+                            context.push(ClientDetailsView.routeName);
                           }),
                     )
                 ],
