@@ -3,7 +3,7 @@ import 'package:interior/assets/text.dart';
 
 Widget teamsTile(BuildContext context, String title, String description,
 String projectId, 
-    String status, double imgHeight, String bgImag, VoidCallback onPressed, String salary,  VoidCallback removeClick,) {
+    String status, double imgHeight, String bgImag, VoidCallback onPressed, String salary,  VoidCallback removeClick,{bool showRemove = true}) {
   return InkWell(
     onTap: onPressed,
     child: LayoutBuilder(builder: (context, constraints) {
@@ -104,12 +104,12 @@ String projectId,
                         SizedBox(
                           width: 10,
                         ), 
-                        InkWell(
+                      showRemove ?  InkWell(
                           onTap: removeClick,
                           child: Icon(Icons.remove_circle_rounded, 
                           color: Theme.of(context).primaryColor,
                           ),
-                        )
+                        ):SizedBox()
                       ],
                     )
               ],

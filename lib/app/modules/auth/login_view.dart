@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:interior/app/core/theme/app_theme.dart';
 import 'package:interior/app/core/widgets/buttons.dart';
 import 'package:interior/app/core/widgets/custom_text_fields.dart';
+import 'package:interior/app/modules/client/client_home_view.dart';
 import 'package:interior/assets/text.dart';
 import 'package:interior/l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
@@ -100,7 +101,9 @@ class LoginView extends ConsumerWidget {
                               ? 40
                               : 20,
                     ),
-                    CustomButton(label: 'Continue', onPressed: () {}),
+                    CustomButton(label: 'Continue', onPressed: () {
+                      context.go(ClientHomeView.routeName);
+                    }),
                     SizedBox(
                       height: isDesktop
                           ? 60

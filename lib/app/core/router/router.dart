@@ -9,6 +9,9 @@ import 'package:interior/app/modules/admin/projects/projects_view.dart';
 import 'package:interior/app/modules/auth/admin_login_view.dart';
 import 'package:interior/app/modules/auth/login_view.dart';
 import 'package:interior/app/modules/admin/home/admin_home_view.dart';
+import 'package:interior/app/modules/client/client_home_view.dart';
+import 'package:interior/app/modules/client/client_project_detail.dart';
+import 'package:interior/app/modules/notification_view.dart';
 import 'package:interior/app/modules/onboarding/view/onboarding_view.dart';
 import 'package:interior/app/modules/splash/splash_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -49,6 +52,27 @@ final routerProvider = Provider<GoRouter>(
           pageBuilder: (context, state) =>
               appTransiton(context, state, EmployeeDeytailsView()),
         ),
+
+
+         GoRoute(
+          path: ClientHomeView.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, ClientHomeView()),
+        ),
+
+         GoRoute(
+          path: ClientProjectDetail.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, ClientProjectDetail()),
+        ),
+
+
+          GoRoute(
+          path: NotificationView.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, NotificationView()),
+        ),
+
 
         GoRoute(
           path: ClientDetailsView.routeName,
