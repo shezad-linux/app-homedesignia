@@ -92,7 +92,7 @@ class ProjectsView extends ConsumerWidget {
                           'John Doe Project',
                           '20/11/2012',
                           'Ongoing',
-                          "#${i+1}",
+                          "#${i + 1}",
                           isDesktop
                               ? MediaQuery.of(context).size.height * 0.150
                               : isTablet
@@ -100,8 +100,8 @@ class ProjectsView extends ConsumerWidget {
                                   : MediaQuery.of(context).size.height * 0.060,
                           "https://imgs.search.brave.com/QHtnZKbeHGavnBqi2E2CIyJaU81J_L4v1JmyLhhMMr8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuYWRzdHRjLmNv/bS9tZWRpYS9pbWFn/ZXMvNjE5NC9kN2Rh/L2Y5MWMvODEyMC9m/NTAwLzAwMzQvbmV3/c2xldHRlci9QQUxf/RGVzaWduX05VQk9f/SW1hZ2VfXygxKS5q/cGc_MTYzNzE0NDUy/Ng",
                           () {
-                            context.push(ProjectDetailsView.routeName);
-                          }),
+                        context.push(ProjectDetailsView.routeName);
+                      }),
                     )
                 ],
               ),
@@ -139,6 +139,7 @@ class ProjectsView extends ConsumerWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomTextFormField(
                           hintText: 'Enter your project name*',
@@ -182,6 +183,70 @@ class ProjectsView extends ConsumerWidget {
                             ),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("Select your team"),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      SizedBox(
+                        // height: MediaQuery.of(context).size.height * 0.06,
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                for (int i = 0; i < 10; i++)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        PhysicalModel(
+                                          color: Colors.blueGrey,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(3)),
+                                          elevation: 6,
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(3)),
+                                                  color: Color(0xFFEAEAEA)),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text("Employee"),
+                                        Text("Designation")
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            )),
                       ),
                       SizedBox(
                         height: 20,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interior/app/modules/onboarding/view/onboarding_view.dart';
+import 'package:interior/assets/assets.dart';
 // import 'package:interior/assets/assets.dart';
 
 class SplashView extends StatefulWidget {
@@ -35,14 +36,14 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.black,
       body: Center(
         child: AnimatedBuilder(
           animation: controller,
           builder: (context, child) => AnimatedOpacity(
             opacity: controller.value,
             duration: Duration(milliseconds: 800),
-            // child: Image.asset(Assets.splash),
+            child: Image.asset(Assets.logo),
           ),
         ),
       ),

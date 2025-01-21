@@ -125,6 +125,8 @@ class EmployeeView extends ConsumerWidget {
         ),
         builder: (BuildContext context) {
           TextEditingController employee = TextEditingController();
+          TextEditingController desig = TextEditingController();
+          TextEditingController salary = TextEditingController();
 
           return Consumer(builder: (context, ref, widget) {
             DateTime checkDoj = ref.watch(dateOfJoingingProvider);
@@ -148,6 +150,34 @@ class EmployeeView extends ConsumerWidget {
                             final value = validator?.trim();
                             if (value!.isEmpty) {
                               return 'Please enter your employee name';
+                            }
+                            return null;
+                          }),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      CustomTextFormField(
+                          hintText: 'Enter employee designation*',
+                          keyboardType: TextInputType.name,
+                          controller: desig,
+                          validator: (validator) {
+                            final value = validator?.trim();
+                            if (value!.isEmpty) {
+                              return 'Please enter your employee desiognation';
+                            }
+                            return null;
+                          }),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      CustomTextFormField(
+                          hintText: 'Enter your employee salary*',
+                          keyboardType: TextInputType.number,
+                          controller: salary,
+                          validator: (validator) {
+                            final value = validator?.trim();
+                            if (value!.isEmpty) {
+                              return 'Please enter your employee salary';
                             }
                             return null;
                           }),

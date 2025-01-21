@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interior/app/core/theme/app_theme.dart';
+import 'package:interior/app/core/widgets/add_button.dart';
+import 'package:interior/app/core/widgets/buttons.dart';
 import 'package:interior/app/core/widgets/custom_text_fields.dart';
+import 'package:interior/app/core/widgets/custome_bottom_sheet.dart';
 import 'package:interior/app/modules/admin/projects/providers/project_providers.dart';
 import 'package:interior/app/modules/admin/projects/teams_tile.dart';
 import 'package:interior/assets/text.dart';
@@ -14,7 +17,6 @@ class ProjectDetailsView extends ConsumerWidget {
   ProjectDetailsView({super.key});
 
   TextEditingController nameController = TextEditingController();
-  
 
   TextEditingController paymentController = TextEditingController();
 
@@ -244,9 +246,24 @@ class ProjectDetailsView extends ConsumerWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "Team",
-                        style: BaseTextstyle.font16w400,
+                      Row(
+                        children: [
+                          Text(
+                            "Team",
+                            style: BaseTextstyle.font16w400,
+                          ),
+                          Spacer(),
+                          AddButton(
+                            onPressed: () {
+                              addEmployee(context);
+                            },
+                            radius: isDesktop
+                                ? 30
+                                : isTablet
+                                    ? 20
+                                    : 15,
+                          )
+                        ],
                       ),
                       for (int i = 0; i < 3; i++)
                         Padding(
@@ -279,28 +296,35 @@ class ProjectDetailsView extends ConsumerWidget {
                             style: BaseTextstyle.font16w400,
                           ),
                           Spacer(),
-                        paymentStatus ? Expanded(
-                          flex: 9,
-                          child: CustomTextFormField(
-                            hintText: 'Update Payment status',
-                            controller: paymentController, validator: (validator){
-                            final value = validator!.trim();
-                            if (value.isEmpty) {
-                              return 'Please update your payment status';
-                            }
-                            return null;
-                          })) : Text(
-                            "Ontime",
-                            style: BaseTextstyle.font16w400,
-                          ),
+                          paymentStatus
+                              ? Expanded(
+                                  flex: 9,
+                                  child: CustomTextFormField(
+                                      hintText: 'Update Payment status',
+                                      controller: paymentController,
+                                      validator: (validator) {
+                                        final value = validator!.trim();
+                                        if (value.isEmpty) {
+                                          return 'Please update your payment status';
+                                        }
+                                        return null;
+                                      }))
+                              : Text(
+                                  "Ontime",
+                                  style: BaseTextstyle.font16w400,
+                                ),
                           SizedBox(
                             width: 10,
                           ),
                           InkWell(
-                            onTap: 
-                            (){
-                              paymentStatus ? ref.read(projDeadLineProvider.notifier).state = false : 
-                              ref.read(projDeadLineProvider.notifier).state = true;
+                            onTap: () {
+                              paymentStatus
+                                  ? ref
+                                      .read(projDeadLineProvider.notifier)
+                                      .state = false
+                                  : ref
+                                      .read(projDeadLineProvider.notifier)
+                                      .state = true;
                             },
                             child: Icon(
                               Icons.edit,
@@ -318,5 +342,111 @@ class ProjectDetailsView extends ConsumerWidget {
         }),
       ),
     );
+  }
+
+  void addEmployee(
+    BuildContext context,
+  ) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20), // Top radius of the bottom sheet
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Consumer(builder: (context, ref, widget) {
+            return ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight:
+                    MediaQuery.of(context).size.height * 0.5, // 89% height
+              ),
+              child: CustomBottomSheet(
+                  child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Select your team",
+                        style: BaseTextstyle.font18w600,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      SizedBox(
+                        // height: MediaQuery.of(context).size.height * 0.06,
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                for (int i = 0; i < 10; i++)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        PhysicalModel(
+                                          color: Colors.blueGrey,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(3)),
+                                          elevation: 6,
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(3)),
+                                                  color: Color(0xFFEAEAEA)),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text("Employee"),
+                                        Text("Designation")
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            )),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      CustomButton(
+                          label: 'Add to Team',
+                          onPressed: () {
+                            context.pop();
+                          })
+                    ],
+                  ),
+                ),
+              )),
+            );
+          });
+        });
   }
 }
