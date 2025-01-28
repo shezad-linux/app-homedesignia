@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "552246178500",
+    "firebase_url": "https://homedesignia-55072-default-rtdb.firebaseio.com",
+    "project_id": "homedesignia-55072",
+    "storage_bucket": "homedesignia-55072.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552246178500:android:375861efeb61825d3fcf91",
+        "android_client_info": {
+          "package_name": "com.example.interior"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552246178500-120ggdtlljil45tael557qejnldoialb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA49n8NwLIor4El1IO7pwmK-HemZF-XCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552246178500-120ggdtlljil45tael557qejnldoialb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "552246178500-qtabq82je56llnkooiik7c4ecj27s1uu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.interior"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

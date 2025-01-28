@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:interior/app/modules/admin/client/client_details_view.dart';
 import 'package:interior/app/modules/admin/client/client_view.dart';
 import 'package:interior/app/modules/admin/employee/employee_details_view.dart';
 import 'package:interior/app/modules/admin/employee/employee_view.dart';
@@ -15,7 +14,9 @@ import 'package:interior/app/modules/notification_view.dart';
 import 'package:interior/app/modules/onboarding/view/onboarding_view.dart';
 import 'package:interior/app/modules/splash/splash_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import 'package:interior/app/modules/client/clientDetailsView.dart';
+import 'package:interior/app/modules/client/UniqueUserDashboard.dart';
+import 'package:interior/app/modules/auth//setPassword.dart';
 ///
 /// for getting routers that are present in the app
 ///
@@ -74,11 +75,6 @@ final routerProvider = Provider<GoRouter>(
         ),
 
 
-        GoRoute(
-          path: ClientDetailsView.routeName,
-          pageBuilder: (context, state) =>
-              appTransiton(context, state, ClientDetailsView()),
-        ),
 
         GoRoute(
           path: SplashView.routeName,
@@ -114,6 +110,21 @@ final routerProvider = Provider<GoRouter>(
           pageBuilder: (context, state) =>
               appTransiton(context, state, AdminLoginView()),
         ),
+        GoRoute(
+          path: ClientDetailsView.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, ClientDetailsView()),
+        ),
+        GoRoute(
+          path: UniqueUserDashboard.routeName,
+          pageBuilder: (context, state) =>
+              appTransiton(context, state, UniqueUserDashboard()),
+        ),
+        GoRoute(
+          path: '/setPassword',
+          builder: (context, state) => const SetPassword(),
+        ),
+
       ],
     );
   },

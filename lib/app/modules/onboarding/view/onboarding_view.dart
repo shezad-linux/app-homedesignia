@@ -31,8 +31,8 @@ class OnboardingView extends ConsumerWidget {
                 horizontal: isDesktop
                     ? constraints.maxWidth * 0.1
                     : isTablet
-                        ? 40
-                        : 20,
+                    ? 40
+                    : 20,
                 vertical: 20,
               ),
               child: Column(
@@ -49,8 +49,8 @@ class OnboardingView extends ConsumerWidget {
                     height: isDesktop
                         ? 60
                         : isTablet
-                            ? 40
-                            : 20,
+                        ? 40
+                        : 20,
                   ),
                   CustomButton(
                       borderColor: Colors.black26,

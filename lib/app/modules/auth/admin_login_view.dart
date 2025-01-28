@@ -38,8 +38,8 @@ class AdminLoginView extends ConsumerWidget {
                   horizontal: isDesktop
                       ? constraints.maxWidth * 0.1
                       : isTablet
-                          ? 40
-                          : 20,
+                      ? 40
+                      : 20,
                   vertical: 20,
                 ),
                 child: Column(
@@ -59,8 +59,8 @@ class AdminLoginView extends ConsumerWidget {
                           width: isDesktop
                               ? 30
                               : isTablet
-                                  ? 20
-                                  : 10,
+                              ? 20
+                              : 10,
                         ),
                         Text(
                           "Sign In As Admin",
@@ -72,8 +72,8 @@ class AdminLoginView extends ConsumerWidget {
                       height: isDesktop
                           ? 60
                           : isTablet
-                              ? 40
-                              : 20,
+                          ? 40
+                          : 20,
                     ),
                     CustomTextFormField(
                       keyboardType: TextInputType.emailAddress,
@@ -97,8 +97,8 @@ class AdminLoginView extends ConsumerWidget {
                       height: isDesktop
                           ? 60
                           : isTablet
-                              ? 40
-                              : 20,
+                          ? 40
+                          : 20,
                     ),
                     CustomButton(
                         label: 'Continue',
@@ -109,8 +109,8 @@ class AdminLoginView extends ConsumerWidget {
                       height: isDesktop
                           ? 60
                           : isTablet
-                              ? 40
-                              : 20,
+                          ? 40
+                          : 20,
                     ),
                     Text(
                       AppLocalizations.of(context)?.signUpText ?? "",
