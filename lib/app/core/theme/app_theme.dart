@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:interior/app/core/theme/themes.dart';
+import 'package:HomeDesignia/app/core/theme/themes.dart';
 
 class AppTheme {
   /// for getting light theme

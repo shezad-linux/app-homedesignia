@@ -1,5 +1,5 @@
 # TODO: add your app name here
-name: interior
+name: HomeDesignia
 # TODO: add your app description here
 description: A new Flutter project.
 
@@ -29,8 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_form_builder: ^9.7.0
-  google_sign_in: ^6.2.2
+ 
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
@@ -55,14 +54,12 @@ dependencies:
   connectivity_plus: ^6.1.2
   geocoding:
   shimmer: ^3.0.0
-  lottie: ^3.0.0
-  webview_flutter: ^4.4.1
-  firebase_dynamic_links: ^6.1.1
+  
+  webview_flutter: ^4.10.0
+ 
   archive: ^3.6.1
-  firebase_auth: ^5.4.1
-  firebase: ^9.0.3
-  firebase_core: ^3.10.1
-  cloud_firestore: ^5.6.2
+  
+  flutter_speed_dial: ^7.0.0
 
 
 dev_dependencies:
